@@ -31,14 +31,15 @@ public class buttons extends baseTest {
                 "<br><b>Verify the click action</b>");
 
         webSteps.click("buttonsNav"); // Replace with the actual locator for the Buttons navigation
+        webSteps.scrollToElement("btnScroll");
 
         // Double Click
-        webSteps.click("doubleClickBtn"); // Replace with the actual locator for the Double Click button
+        webSteps.doubleClick("doubleClickBtn"); // Replace with the actual locator for the Double Click button
         String doubleClickMessage = webSteps.getText("doubleClickMessage"); // Replace with the actual locator for the message after double click
         assert doubleClickMessage.equals("You have done a double click") : "Double click message not found!";
 
         // Right Click
-        webSteps.click("rightClickBtn"); // Replace with the actual locator for the Right Click button
+        webSteps.rightClick("rightClickBtn"); // Replace with the actual locator for the Right Click button
         String rightClickMessage = webSteps.getText("rightClickMessage"); // Replace with the actual locator for the message after right click
         assert rightClickMessage.equals("You have done a right click") : "Right click message not found!";
 

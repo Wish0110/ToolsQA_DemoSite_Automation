@@ -262,4 +262,25 @@ public class webSteps {
         }
     }
 
+    public void doubleClick(String locator) {
+        try {
+            WebElement element = driver.findElement(getLocator(locator));
+            Actions actions = new Actions(driver);
+            actions.doubleClick(element).perform(); // Perform double click
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + locator);
+        }
+    }
+
+    public void rightClick(String locator) {
+        try {
+            WebElement element = driver.findElement(getLocator(locator));
+            Actions actions = new Actions(driver);
+            actions.contextClick(element).perform(); // Perform right click
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + locator);
+        }
+    }
+
+
 }
