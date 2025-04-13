@@ -24,10 +24,8 @@ public class uploadDownload extends baseTest {
         extentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC007: Verify file upload and download</b>");
         extentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
                 "<br><b>Navigate to Upload and Download section</b>" +
-                "<br><b>Upload a file</b>" +
-                "<br><b>Verify the uploaded file name</b>" +
                 "<br><b>Download the file</b>" +
-                "<br><b>Verify the downloaded file</b>");
+                "<br><b>Upload that downloaded file</b>");
 
         webSteps.scrollToElement("textBoxNav");
         webSteps.click("uploadDownloadNav");
