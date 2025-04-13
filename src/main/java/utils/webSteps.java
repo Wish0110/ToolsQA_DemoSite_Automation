@@ -225,5 +225,41 @@ public class webSteps {
         return random.nextInt(bound + 1);
     }
 
+    // Method to get the locator based on your locator strategy
+    private By getLocator(String locator) {
+        // Implement your locator strategy here (e.g., by ID, name, XPath, etc.)
+        // Example:
+        return By.id(locator); // Adjust this based on your locator strategy
+    }
+
+    public boolean isElementEnabled(String locator) {
+        try {
+            WebElement element = driver.findElement(getLocator(locator));
+            return element.isEnabled();
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + locator);
+            return false; // Return false if the element is not found
+        }
+    }
+
+    public String getCssValue(String locator, String propertyName) {
+        try {
+            WebElement element = driver.findElement(getLocator(locator));
+            return element.getCssValue(propertyName);
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + locator);
+            return null; // Return null if the element is not found
+        }
+    }
+
+    //clear text field
+    public void clearText(String locator) {
+        try {
+            WebElement element = driver.findElement(getLocator(locator));
+            element.clear(); // Clear the text field
+        } catch (NoSuchElementException e) {
+            System.out.println("Element not found: " + locator);
+        }
+    }
 
 }
