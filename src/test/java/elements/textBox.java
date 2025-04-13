@@ -1,4 +1,4 @@
-package elemnets;
+package elements;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,5 +35,6 @@ public class textBox extends baseTest {
         webSteps.type("456 Elm St, Colombo, Sri Lanka", "permanentAddress");
         webSteps.scrollToElement("submitButton");
         webSteps.click("submitButton");
+        extentReportManager.testSteps("<b><font color='green'>Test Passed: </font></b>Text box form submit successfully.");
     }
 }
