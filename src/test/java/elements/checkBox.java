@@ -1,4 +1,4 @@
-package elemnets;
+package elements;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,6 +35,7 @@ public class checkBox extends baseTest {
         String selectedCheckboxText = webSteps.getText("selectedCheckboxOutput");
         String expectedMessage = "You have selected :";
         assert selectedCheckboxText.equals(expectedMessage) : "Expected message not found! Expected: '" + expectedMessage + "' but got: '" + selectedCheckboxText + "'";
+        extentReportManager.testSteps("<b><font color='green'>Test Passed: </font></b>Checkbox select successfully.");
     }
 
 
