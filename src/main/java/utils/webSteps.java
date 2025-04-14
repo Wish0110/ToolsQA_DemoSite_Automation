@@ -326,6 +326,15 @@ public class webSteps {
         pressEnter(); // Press Enter after typing
     }
 
-
+    public void switchToFrame(String frameNameOrId) {
+        try {
+            driver.switchTo().defaultContent(); // Always switch back to main content before switching frames
+            driver.switchTo().frame(frameNameOrId);
+            System.out.println("Switched to frame: " + frameNameOrId);
+        } catch (NoSuchFrameException e) {
+            System.err.println("Frame not found: " + frameNameOrId);
+            throw e;
+        }
+    }
 
 }
