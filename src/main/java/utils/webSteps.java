@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
@@ -149,9 +150,10 @@ public class webSteps {
 
     // Common method to upload a file from resources folder
     public void uploadFile(String fileName, String locator) throws InterruptedException {
-        click(locator);
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement uploadElement = driver.findElement(xpath);
 
-        // Construct path to the image inside resources folder
+        // Construct the absolute path to the file
         String resourcePath = "src/main/resources/assets/" + fileName;
         File file = new File(resourcePath);
 
@@ -159,34 +161,9 @@ public class webSteps {
             throw new RuntimeException("File not found: " + resourcePath);
         }
 
-        // Get absolute path
-        String absolutePath = file.getAbsolutePath();
-
-        // Copy path to clipboard
-        StringSelection selection = new StringSelection(absolutePath);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-
-        try {
-            waiting();
-            Robot robot = new Robot();
-
-            // Simulate Ctrl + V and Enter
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            Thread.sleep(100);
-
-            waiting();
-
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-
-            waiting();
-
-        } catch (AWTException e) {
-            throw new RuntimeException(e);
-        }
+        // Use the sendKeys method to upload the file
+        uploadElement.sendKeys(file.getAbsolutePath());
+        waiting(); // Optional: wait after uploading
     }
 
     // Helper method to generate a random string
@@ -281,6 +258,74 @@ public class webSteps {
             System.out.println("Element not found: " + locator);
         }
     }
+
+    // Method to select an option from a dropdown using visible text
+    public void selectByVisibleText(String locator, String visibleText) throws InterruptedException {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement dropdownElement = driver.findElement(xpath);
+        Select select = new Select(dropdownElement);
+        select.selectByVisibleText(visibleText);
+        waiting();
+    }
+
+    // Method to select an option from a dropdown using index
+    public void selectByIndex(String locator, int index) throws InterruptedException {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement dropdownElement = driver.findElement(xpath);
+        Select select = new Select(dropdownElement);
+        select.selectByIndex(index);
+        waiting();
+    }
+
+    // Method to select an option from a dropdown using value
+    public void selectByValue(String locator, String value) throws InterruptedException {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement dropdownElement = driver.findElement(xpath);
+        Select select = new Select(dropdownElement);
+        select.selectByValue(value);
+        waiting();
+    }
+
+    // Method to select a full date (day, month, year) from a date picker
+    public void selectFullDate(String datePickerLocator, String day, String month, String year) throws InterruptedException {
+
+        click(datePickerLocator);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("react-datepicker__month-select")));
+
+        WebElement monthDropdown = driver.findElement(By.className("react-datepicker__month-select"));
+        Select monthSelect = new Select(monthDropdown);
+        monthSelect.selectByVisibleText(month);
+
+        WebElement yearDropdown = driver.findElement(By.className("react-datepicker__year-select")); // Adjust based on the actual class name
+        Select yearSelect = new Select(yearDropdown);
+        yearSelect.selectByVisibleText(year);
+
+        String dayXPath = String.format("//div[contains(@class, 'react-datepicker__day') and text()='%s']", day);
+        WebElement dayElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(dayXPath)));
+        dayElement.click();
+
+        waiting();
+    }
+
+    // Method to press the Enter key
+    public void pressEnter() throws AWTException, InterruptedException {
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        waiting(); // Optional: wait after pressing Enter
+    }
+
+    public void typewithenter(String text, String locator) throws InterruptedException, AWTException {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement inputField = driver.findElement(xpath);
+        inputField.clear();
+        inputField.sendKeys(text);
+        waiting();
+        pressEnter(); // Press Enter after typing
+    }
+
 
 
 }
