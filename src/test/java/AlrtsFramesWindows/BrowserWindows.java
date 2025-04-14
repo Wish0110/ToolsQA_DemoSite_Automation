@@ -1,6 +1,5 @@
-package AlertsFramesWindows;
+package AlrtsFramesWindows;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.baseTest;
@@ -16,7 +15,7 @@ public class BrowserWindows extends baseTest {
         loadUrl();
         webSteps.waiting();
         webSteps.scrollToElement("elements");
-        webSteps.click("AlertsFramesWindows");
+        webSteps.click("AlrtsFramesWindows");
         webSteps.scrollToElement("firstScrollAlert");
         webSteps.click("browserWindowsNav");
     }
