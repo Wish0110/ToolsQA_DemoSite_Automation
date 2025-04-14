@@ -36,7 +36,7 @@ public class dynamicProperties extends baseTest {
         assert buttonText.equals("Visible After 5 Seconds") : "Button text did not change as expected! Expected: 'Visible After 5 Seconds' but got: '" + buttonText + "'";
 
         // Verify the button is enabled
-        webSteps.click("enableBtn");// Replace with the actual locator for the dynamic button
+        webSteps.click("enableBtn");
 
         extentReportManager.testSteps("<b><font color='green'>Test Passed: </font></b>Dynamic properties verified successfully.");
     }
