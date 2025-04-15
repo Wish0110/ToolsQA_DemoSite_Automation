@@ -337,4 +337,15 @@ public class webSteps {
         }
     }
 
+    public boolean isDisplayed(String locatorKey) {
+        try {
+            // Retrieve the locator from your locator repository using the locatorKey
+            By locator = getLocator(locatorKey); // Implement getLocator to return By object based on locatorKey
+            WebElement element = driver.findElement(locator);
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }
