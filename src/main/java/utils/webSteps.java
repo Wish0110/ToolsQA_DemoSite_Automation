@@ -348,4 +348,48 @@ public class webSteps {
         }
     }
 
+    public void dragSlider(String sliderHandleLocator, int value) throws InterruptedException {
+        By xpath = constructElement(findElementRepo(sliderHandleLocator));
+        WebElement sliderHandle = driver.findElement(xpath);
+
+        // Get the current position of the slider handle
+        int currentX = sliderHandle.getLocation().getX();
+        int sliderWidth = sliderHandle.getSize().getWidth();
+
+        // Calculate the new position based on the desired value
+        // Assuming the slider's range is from 0 to 100, adjust as necessary
+        int newPosition = currentX + (value * sliderWidth / 100); // Adjust this calculation based on the slider's actual range
+
+        // Create an Actions object to perform the drag-and-drop
+        Actions action = new Actions(driver);
+        action.clickAndHold(sliderHandle) // Click and hold the slider handle
+                .moveByOffset(newPosition - currentX, 0) // Move to the new position
+                .release() // Release the handle
+                .perform(); // Execute the action
+
+        waiting(); // Optional: wait after dragging
+    }
+
+    // Method to hover over an element
+    public void hover(String locator) throws InterruptedException {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement elementToHover = driver.findElement(xpath);
+
+        // Create an Actions object
+        Actions actions = new Actions(driver);
+
+        // Perform the hover action
+        actions.moveToElement(elementToHover).perform();
+
+        // Optional: wait for a short duration to ensure the tooltip appears
+        waiting(); // You can adjust this wait time as necessary
+    }
+
+    public void overloadSelect(String locator, String optionText) {
+        By xpath = constructElement(findElementRepo(locator));
+        WebElement dropdown = driver.findElement(xpath);
+        Select select = new Select(dropdown);
+        select.selectByVisibleText(optionText); // Select by visible text
+    }
+
 }
