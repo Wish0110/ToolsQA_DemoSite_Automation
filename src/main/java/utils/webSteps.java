@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import static dataProviders.repositoryFileReader.constructElement;
 import static dataProviders.repositoryFileReader.findElementRepo;
@@ -391,5 +392,12 @@ public class webSteps {
         Select select = new Select(dropdown);
         select.selectByVisibleText(optionText); // Select by visible text
     }
+
+    public void sendKeys(String locator, String text) {
+        WebElement element = driver.findElement(By.id(locator)); // Adjust locator strategy as needed
+        element.clear(); // Clear existing text
+        element.sendKeys(text);
+    }
+
 
 }
