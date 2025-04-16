@@ -21,7 +21,7 @@ public class Sortable extends baseTest {
 
     @Test
     public void sortable() throws InterruptedException {
-        extentReportManager.startTest("Elements", "<b>Sortable</b>");
+        extentReportManager.startTest("interactions", "<b>Sortable</b>");
         extentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC005: Verify sortable functionality</b>");
         extentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
                 "<br><b>Drag and drop items to reorder them</b>" +
