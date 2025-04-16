@@ -399,5 +399,11 @@ public class webSteps {
         element.sendKeys(text);
     }
 
+    // Method to get the attribute value of a web element
+    public String getAttribute(String elementId, String attributeName) {
+        WebElement element = driver.findElement(By.id(elementId));
+        return element.getAttribute(attributeName);
+    }
+
 
 }
