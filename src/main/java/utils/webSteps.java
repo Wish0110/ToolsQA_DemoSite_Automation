@@ -71,6 +71,10 @@ public class webSteps {
     public void waiting() throws InterruptedException {
         Thread.sleep(2000);
     }
+    // Method to wait 2000ms
+    public void progressBarWaiting() throws InterruptedException {
+        Thread.sleep(6000);
+    }
 
     // Method for scroll to given element
     public void scrollToElement(String locator) throws InterruptedException {
