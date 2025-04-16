@@ -409,6 +409,22 @@ public class webSteps {
         return element.getAttribute(attributeName);
     }
 
+    public void dragAndDrop(String sourceLocator, String targetLocator) throws InterruptedException {
+        By sourceXPath = constructElement(findElementRepo(sourceLocator));
+        By targetXPath = constructElement(findElementRepo(targetLocator));
+
+        WebElement sourceElement = driver.findElement(sourceXPath);
+        WebElement targetElement = driver.findElement(targetXPath);
+
+        // Create an Actions object to perform the drag-and-drop
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(sourceElement) // Click and hold the source element
+                .moveToElement(targetElement) // Move to the target element
+                .release() // Release the hold
+                .perform(); // Execute the action
+
+        waiting(); // Optional: wait after dragging
+    }
 
 
 }
