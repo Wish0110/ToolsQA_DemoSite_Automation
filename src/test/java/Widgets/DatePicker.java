@@ -27,7 +27,7 @@ public class DatePicker extends baseTest {
         // Click on the datepicker input
         webSteps.click("datePickerInput");
 
-        // Select a date (e.g., 15)
+        // Select a date
         webSteps.selectFullDate("datePickerInput", "20", "May", "2025");
 
         extentReportManager.testSteps("<b><font color='green'>Test Passed: </font></b>Date Picker functionality verified successfully.");
