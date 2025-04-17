@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AllTestsSuite">
+
+    <test name="ElementsTests">
+        <classes>
+            <class name="elements.textBox"/>
+            <class name="elements.checkBox"/>
+            <class name="elements.radioBtn"/>
+            <class name="elements.webTables"/>
+            <class name="elements.buttons"/>
+            <class name="elements.links"/>
+            <class name="elements.brokenLinks"/>
+            <class name="elements.uploadDownload"/>
+            <class name="elements.dynamicProperties"/>
+        </classes>
+    </test>
+
+    <test name="FormsTests">
+        <classes>
+            <class name="Forms.PracticeForm"/>
+        </classes>
+    </test>
+
+    <test name="AlertsFramesWindowsTests">
+        <classes>
+            <class name="AlrtsFramesWindows.BrowserWindows"/>
+            <class name="AlrtsFramesWindows.Alerts"/>
+            <class name="AlrtsFramesWindows.Frames"/>
+            <class name="AlrtsFramesWindows.NestedFrames"/>
+            <class name="AlrtsFramesWindows.ModalDialogs"/>
+        </classes>
+    </test>
+
+    <test name="WidgetsTests">
+        <classes>
+            <class name="Widgets.Accordian"/>
+            <class name="Widgets.AutoComplete"/>
+            <class name="Widgets.DatePicker"/>
+            <class name="Widgets.Slider"/>
+            <class name="Widgets.ProgressBar"/>
+            <class name="Widgets.Tabs"/>
+            <class name="Widgets.ToolTips"/>
+            <class name="Widgets.Menu"/>
+            <class name="Widgets.SelectMenu"/>
+        </classes>
+    </test>
+
+    <test name="InteractionsTests">
+        <classes>
+            <class name="Interactions.Sortable"/>
+            <class name="Interactions.Selectable"/>
+            <class name="Interactions.Resizable"/>
+            <class name="Interactions.Droppable"/>
+            <class name="Interactions.Draggable"/>
+        </classes>
+    </test>
+
+    <test name="BookStoreApplicationTests">
+        <classes>
+            <class name="BookStoreApplication.Login"/>
+            <class name="BookStoreApplication.BookstorePage"/>
+        </classes>
+    </test>
+
+</suite>
