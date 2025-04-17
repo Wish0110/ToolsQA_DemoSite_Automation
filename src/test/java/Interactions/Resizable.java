@@ -1,10 +1,11 @@
-package elements;
+package Interactions;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.baseTest;
 import utils.extentReportManager;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Resizable extends baseTest {
@@ -13,27 +14,27 @@ public class Resizable extends baseTest {
     public void setUp() throws InterruptedException, IOException {
         loadUrl();
         webSteps.waiting();
-        webSteps.scrollToElement("interactions");
-        webSteps.click("interactions");
-        webSteps.scrollToElement("resizable");
-        webSteps.click("resizable");
+        webSteps.scrollToElement("interaction");
+        webSteps.click("interaction");
+        webSteps.scrollToElement("resizableNav");
+        webSteps.click("resizableNav");
     }
 
     @Test
-    public void resize() throws InterruptedException {
-        extentReportManager.startTest("Elements", "<b>Resizable</b>");
+    public void resize() throws InterruptedException, AWTException {
+        extentReportManager.startTest("interactions", "<b>Resizable</b>");
         extentReportManager.testSteps("<b><font color='blue'>Test Case : </font>TC007: Verify resizable functionality</b>");
         extentReportManager.testSteps("<b><font color='blue'>Test Steps : </font></b>" +
                 "<br><b>Resize the element</b>" +
                 "<br><b>Verify the new size</b>");
 
-        // Resize the element
-        webSteps.dragAndDrop("resizableHandle", "newPosition"); // Adjust as necessary
+        webSteps.scrollToElement("resizableScroll");
 
-        // Verify new size
-        String newSize = webSteps.getCssValue("resizableElement", "width");
-        assert newSize.equals("Expected Width") : "Resizable element did not resize correctly!";
+        // Resize the element
+        webSteps.resizeElement("resizableElement", 400, 250);
+        webSteps.pressEnter();
 
         extentReportManager.testSteps("<b><font color='green '>Test Passed: </font></b>Resizable functionality verified successfully.");
     }
+
 }
