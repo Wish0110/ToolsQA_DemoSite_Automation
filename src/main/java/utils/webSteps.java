@@ -426,5 +426,38 @@ public class webSteps {
         waiting(); // Optional: wait after dragging
     }
 
+    public void resizeElementt(String handleLocator, int widthChange, int heightChange) throws InterruptedException, AWTException {
+        By handleXPath = constructElement(findElementRepo(handleLocator));
+        WebElement handle = driver.findElement(handleXPath);
 
+        // Create an Actions object to perform the drag-and-drop
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(handle) // Click and hold the handle
+                .moveByOffset(widthChange, heightChange) // Move by the specified offsets
+                .release() // Release the handle
+                .perform(); // Execute the action
+
+        waiting(); // Optional: wait after resizing
+
+        // Optionally, you can add a small delay to allow the UI to update
+        Thread.sleep(500); // Adjust the duration as necessary
+    }
+
+    // Method to resize an element
+    public void resizeElement(String handleLocator, int widthChange, int heightChange) throws InterruptedException {
+        By handleXPath = constructElement(findElementRepo(handleLocator));
+        WebElement handle = driver.findElement(handleXPath);
+
+        // Create an Actions object to perform the drag-and-drop
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(handle) // Click and hold the handle
+                .moveByOffset(widthChange, heightChange) // Move by the specified offsets
+                .release() // Release the handle
+                .perform(); // Execute the action
+
+        waiting(); // Optional: wait after resizing
+
+        // Optionally, you can add a small delay to allow the UI to update
+        Thread.sleep(500); // Adjust the duration as necessary
+    }
 }
